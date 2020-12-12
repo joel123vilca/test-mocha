@@ -10,10 +10,10 @@ exports.numbersAnswers = {
   },
 
   convertToBinary: function(num) {
-
+    return (num >>> 0).toString(2);
   },
 
   multiply: function(a, b) {
-
+    return a*b
   }
 };

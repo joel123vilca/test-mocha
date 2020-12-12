@@ -1,8 +1,11 @@
+const { countBy } = require("underscore");
+
 exports = typeof window === 'undefined' ? global : window;
 
 exports.regexAnswers = {
   containsNumber: function(str) {
-    return /\d/.test(str);
+    let r = /\d/
+    return r.test(str);
   },
 
   containsRepeatingLetter: function(str) {
@@ -13,12 +16,16 @@ exports.regexAnswers = {
 
   endsWithVowel: function(str) {
     let r = /^([aeiou]).*\1$/i
-    console.log(r.test(str))
     return r.test(str)
   },
 
   captureThreeNumbers: function(str) {
-
+    let reg;
+    if(reg = str.match(/(\d{3})/)){
+      return reg[0];
+    } else{
+      return false;
+    }
   },
 
   matchesPattern: function(str) {

@@ -1,19 +1,19 @@
 exports = typeof window === 'undefined' ? global : window;
 
 exports.recursionAnswers = {
-  listFiles: function(data, dirName) {
-    let fs = fs || require('fs'),
+  listFiles: function(dir, filelist) {
+    var fs = fs || require('fs'),
     files = fs.readdirSync(dir);
     filelist = filelist || [];
     files.forEach(function(file) {
-      if (fs.statSync(dir + '/' + file).isDirectory()) {
-        filelist = this.listFiles(dir + '/' + file, filelist);
-      }
-      else {
-        filelist.push(file);
-      }
+    if (fs.statSync(dir + file).isDirectory()) {
+      filelist = walkSync(dir + file + '/', filelist);
+    }
+    else {
+      filelist.push(file);
+    }
     });
-    return filelist;
+  return filelist;
   },
 
   permute: function(arr) {
